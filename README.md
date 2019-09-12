@@ -1,6 +1,7 @@
 # ClientesApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.0.
+This related with the other repo for Backend: https://github.com/rflnavas/spring5Angular2App
 
 ## Development server
 
