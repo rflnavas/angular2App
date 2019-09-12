@@ -1,0 +1,52 @@
+<div class="card border-primary mb-3">
+  <div class="card-header">Clientes</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">Listado de clientes</h5>
+    <div class="my-2 text-left">
+      <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/clients/form']">Crear cliente</button>
+    </div>
+    <div *ngIf="clientes?.length==0" class="alert alert-info">
+      No clients found
+    </div>
+    <table class="table table-bordered table-striped" *ngIf="clientes?.length>0">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Email</th>
+          <th>Birthdate</th>
+          <th>Created at</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes">
+          <td>{{ cliente.id }}</td>
+          <td>{{ cliente.name }}</td>
+          <td>{{ cliente.surname | uppercase}}</td>
+          <td>{{ cliente.email }}</td>
+          <!-- If we do not configure the Locale_ID the the text will apppear 
+            in English in spite of configuring the Locale as 'ES'-->
+          <td>{{ cliente.birthdate | date:'EEEE dd MMMM, yyyy'}}</td>
+          <td>{{ cliente.createdAt}}</td>
+          <td>
+            <button type="button" name="btnClientEdit" 
+              [routerLink]="['/clients/form', cliente.id]"
+              class="btn btn-primary">
+              Edit
+            </button>
+            <button type="button" name="btnClientErase" 
+              [routerLink]="['/clients']"
+              class="btn btn-danger" (click)="delete(cliente)">
+              Delete
+            </button>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--We need to inject the value of the paginator 
+      from view (Clientes.paginator) to controller (Paginator.paginator) 
+      who holds this child view component-->
+    <paginator-nav *ngIf="paginator" [paginator]="paginator"></paginator-nav>
+  </div>
+</div>

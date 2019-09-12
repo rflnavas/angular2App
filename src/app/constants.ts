@@ -1,0 +1,1 @@
+export const applicationJsonHeader: any = {'Content-type': 'application/json'};
